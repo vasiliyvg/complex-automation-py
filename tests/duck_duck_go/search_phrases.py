@@ -1,9 +1,6 @@
 import pytest
 
-from pages.duck_duck_go.result import DuckDuckGoResultPage
-from pages.duck_duck_go.search import DuckDuckGoSearchPage
 from playwright.sync_api import expect, Page
-
 
 ANIMALS = [
     'panda',
@@ -13,11 +10,10 @@ ANIMALS = [
 
 @pytest.mark.parametrize('phrase', ANIMALS)
 def test_basic_duckduckgo_search(
-    phrase: str,
-    page: Page,
-    search_page: DuckDuckGoSearchPage,
-    result_page: DuckDuckGoResultPage):
-    
+        phrase: str,
+        page: Page,
+        search_page,
+        result_page):
     search_page.navigate()
     search_page.search(phrase)
     expect(result_page.search_input).to_have_value(phrase)

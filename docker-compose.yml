@@ -4,12 +4,19 @@ services:
   the-internet:
     image: gprestes/the-internet
     container_name: the-internet-app
-    volumes:
-      - ./reports:/e2e/reports
-      - ./screenshots:/e2e/screenshots
     ports:
-      - '7080:5000'
+      - "7080:5000"
+  automated-testing:
+    image: automated-testing
+    container_name: automated-testing
+    build:
+      dockerfile: ./Dockerfile
+    ipc: host
+    depends_on:
+      - the-internet
+    volumes:
+      - .:/app
     environment:
-      - BASE_URL
+      - PYTEST_BASE_URL=http://the-internet-app:5000
       - USER_NAME
       - PASSWORD

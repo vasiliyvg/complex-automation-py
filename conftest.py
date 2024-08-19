@@ -4,6 +4,7 @@ from playwright.sync_api import Page
 from pages.the_internet.a_b_testing_page import ABTestingPage
 from pages.the_internet.add_remove_element_page import AddRemoveElementPage
 from pages.the_internet.basic_auth_page import BasicAuthPage
+from pages.the_internet.broken_images_page import BrokenImagesPage
 
 
 # ------------------------------------------------------------
@@ -25,3 +26,8 @@ def add_remove_element_page(page: Page) -> AddRemoveElementPage:
 @pytest.fixture
 def basic_auth_page(page: Page) -> BasicAuthPage:
     return BasicAuthPage(page)
+
+
+@pytest.fixture
+def broken_images_page(page: Page) -> BrokenImagesPage:
+    return BrokenImagesPage(page)

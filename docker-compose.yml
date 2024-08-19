@@ -12,11 +12,9 @@ services:
     build:
       dockerfile: ./Dockerfile
     ipc: host
-    depends_on:
-      - the-internet
     volumes:
       - .:/app
     environment:
-      - PYTEST_BASE_URL=http://the-internet-app:5000
+      - PYTEST_BASE_URL
       - USER_NAME
       - PASSWORD
